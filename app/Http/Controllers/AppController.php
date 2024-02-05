@@ -22,7 +22,7 @@ class AppController extends Controller
         // Redirect to a different page if the user is not logged in, not verified, or status is not 1
         return redirect('welcome')->with(
             'message', 
-            '<i class="fa fa-check" style="font-size:48px; color: #01c324;"></i> <br> Registration and verification successful. <br> A notification will be sent to you when the admin activates your account.'
+            '<i class="fa fa-check" style="font-size:48px; color: #01c324;"></i> <br> Registration and verification successful. <br> A notification will be sent to you once the admin activates your account.'
         );
     }
 

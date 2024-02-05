@@ -21,10 +21,10 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
-          <a href="{{ route('app.index') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
-          </a>
+            <a href="{{ route('app.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
         </li>
 
         <!-- App -->
@@ -33,14 +33,14 @@
         </li>
 
         <li class="menu-item {{ Request::is('settings') ? 'active' : '' }}">
-            <a href="{{route('app.settings')}}" class="menu-link">
+            <a href="{{ route('app.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Basic">Settings</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="javascript:void(0)" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-report"></i>
                 <div data-i18n="Basic">Reports</div>
             </a>
@@ -52,30 +52,32 @@
         </li>
 
         <li class="menu-item {{ Request::is('admins') ? 'active' : '' }}">
-            <a href="{{route('admins.index')}}" class="menu-link">
+            <a href="{{ route('admins.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-check"></i>
                 <div data-i18n="Basic">Admins</div>
             </a>
         </li>
 
         <li class="menu-item {{ Request::is('foodpartners') ? 'active' : '' }}">
-            <a href="{{route('foodpartners.index')}}" class="menu-link">
+            <a href="{{ route('foodpartners.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-store"></i>
                 <div data-i18n="Basic">Food Partners</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="javascript:void(0)" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-basket"></i>
                 <div data-i18n="Basic">Customers</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-comment"></i>
-                <div data-i18n="Basic">Feedbacks / Complaints</div>
+            <a href="javascript:void(0)" class="menu-link d-flex justify-content-between">
+                <div class="d-flex">
+                    <i class="menu-icon tf-icons bx bx-comment"></i>
+                    <div data-i18n="Basic">Feedbacks / Complaints</div>
+                </div>
                 <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
             </a>
         </li>
@@ -86,21 +88,21 @@
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="javascript:void(0)" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-package"></i>
                 <div data-i18n="Basic">Orders</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="javascript:void(0)" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-credit-card"></i>
                 <div data-i18n="Basic">Payments</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="javascript:void(0)" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-megaphone"></i>
                 <div data-i18n="Basic">Marketing</div>
             </a>
