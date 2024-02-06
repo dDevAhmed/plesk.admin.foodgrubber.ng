@@ -9,7 +9,8 @@
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
                         <a class="nav-link active" href="javascript:void(0);" data-bs-toggle="modal"
-                            data-bs-target="#addAdminModal"><i class="bx bx-user me-1"></i> Add Admin</a>
+                            data-bs-target="#addAdminModal" style="color: var(--foodgrubber-primary-color);
+                            background-color: var(--foodgrubber-tertiary-color);"><i class="bx bx-user me-1"></i> Add Admin</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="pages-account-settings-notifications.html"><i class="bx bx-bell me-1"></i>

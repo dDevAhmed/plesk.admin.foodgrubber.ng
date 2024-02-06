@@ -47,6 +47,9 @@ Route::controller(App\Http\Controllers\People\AdminsController::class)->group(fu
 Route::controller(App\Http\Controllers\People\FoodpartnersController::class)->group(function(){
     Route::get('/foodpartners', 'index')->name('foodpartners.index');
     Route::get('/foodpartners/{partner}', 'partner')->name('foodpartners.partner');
+
+    Route::get('foodpartners/{newfoodpartner}/view')->name('foodpartners.new');
+
 })->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -10,7 +10,7 @@ class FoodPartner extends Model
     use HasFactory;
 
     protected $connection = 'foodgrubber_foodpartners';
-    protected $table = 'users'; 
+    protected $table = 'users_stores'; 
 
 
 }

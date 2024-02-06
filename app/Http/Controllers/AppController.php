@@ -15,7 +15,7 @@ class AppController extends Controller
     {
         $user = Auth::user();
 
-        if ($user && $user->hasVerifiedEmail() && $user->active == 1) {     //fixme - use base controller
+        if ($user && $user->hasVerifiedEmail() && $user->active == 1 && $user->level == 2) {     //fixme - use base controller
             return view('dashboard');
         }
 
