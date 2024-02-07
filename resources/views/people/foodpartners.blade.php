@@ -43,17 +43,22 @@
                                         @foreach ($foodpartners as $foodpartner)
                                             <tr>
                                                 <td><img src="{{ $foodpartner->image ? asset('img/stores/' . $admin->image) : asset('img/no-image.png') }}"
-                                                        alt="Avatar" class="rounded" height="40" width="40" /></td>
+                                                        alt="Avatar" class="rounded" height="60" width="60" /></td>
                                                 <td>{{ $foodpartner->name }}</td>
                                                 <td>{{ $foodpartner->state }}</td>
                                                 <td><span
                                                         class="badge {{ $foodpartner->availability == '1' ? 'bg-label-success' : 'bg-label-warning' }} me-1">{{ $foodpartner->availability == '1' ? 'Active' : 'Away' }}</span>
                                                 </td>
                                                 <td>
-                                                    <a class=""
-                                                        href="{{ route('foodpartners.partner', $foodpartner->id) }}"
-                                                        style="color: var(--foodgrubber-secondary-color);"><i
-                                                            class="bx bx-view me-1"></i> View</a>
+                                                    {{-- <form action="{{ route('foodpartners.foodpartner', $foodpartner->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="foodpartner_id"
+                                                            value="{{ $foodpartner->id }}"> --}}
+                                                    <a href="{{ route('foodpartners.foodpartner', $foodpartner->id) }}"
+                                                        class=""
+                                                        style="color: var(--foodgrubber-secondary-color);">View</a>
+                                                    {{-- </form> --}}
                                                     {{-- <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
@@ -89,25 +94,13 @@
                                                 <td>{{ $newFoodpartner->state }}</td>
                                                 <td>{{ $newFoodpartner->phone }}</td>
                                                 <td>
-                                                    <form action="{{ route('foodpartners.new', $newFoodpartner->id) }}"
+                                                    {{-- <form action="{{ route('foodpartners.new', $newFoodpartner->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         <input type="hidden" name="foodpartner_id"
-                                                            value="{{ $newFoodpartner->id }}">
-                                                        <a href="#" class="" data-bs-toggle="modal"
-                                                            data-bs-target="#viewNewFoodpartnerModal"
-                                                            style="color: var(--foodgrubber-secondary-color);">View</a>
-                                                    </form>
-
-                                                    {{-- <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{route('foodpartners.edit', $foodpartner->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                        <a class="dropdown-item" href="{{route('foodpartners.delete', $foodpartner->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                    </div>
-                                                </div> --}}
+                                                            value="{{ $newFoodpartner->id }}"> --}}
+                                                        <a href="{{ route('foodpartners.foodpartner', $newFoodpartner->id) }}" class="" style="color: var(--foodgrubber-secondary-color);">View</a>
+                                                    {{-- </form> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -118,6 +111,99 @@
                     </div>
                 </div>
 
+                <!-- View Foodpartner Modal -->
+                <div class="modal fade" id="viewFoodpartnerModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel1">Foodpartner</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label for="nameBasic" class="form-label">Name</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->name }}" />
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameBasic" class="form-label">Phone</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->phone }}" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="nameBasic" class="form-label">Address</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->address }}" />
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">City</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->city }}" />
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">State</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->state }}" />
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">Postcode</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->postcode }}" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="nameBasic" class="form-label">Description</label>
+                                        <textarea name="" id="" cols="30" rows="10" class="form-control">{{ $foodpartner->description }}</textarea>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameBasic" class="form-label">Food Certificate Number</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->food_cert_number }}" />
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameBasic" class="form-label">Food Certificate</label>
+                                        <div class="btn-group d-block" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn"
+                                                style="background-color: var(--foodgrubber-tertiary-color); color: var(--foodgrubber-primary-color);">View</button>
+                                            <button type="button" class="btn"
+                                                style="background-color: var(--foodgrubber-primary-color); color: var(--foodgrubber-tertiary-color);">Download
+                                                <i class="tf-icons bx bx-download"></i></button>
+                                        </div>
+                                        {{-- <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->food_cert }}" /> --}}
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">Account Number</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->account_number }}" />
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">Sort Code</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->sort_code }}" />
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="nameBasic" class="form-label">Bank</label>
+                                        <input type="text" id="nameBasic" class="form-control" name=""
+                                            value="{{ $foodpartner->bank }}" />
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameBasic" class="form-label">Logo</label>
+                                        <img src="{{ $foodpartner->logo ? asset('img/stores/' . $foodpartner->logo) : asset('img/no-image.png') }}"
+                                            alt="Avatar" class="rounded d-block" height="100" width="100" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- View Foodpartner Modal -->
+
                 <!-- View New Foodpartner Modal -->
                 <div class="modal fade" id="viewNewFoodpartnerModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
@@ -127,83 +213,95 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-6 mb-3">
-                                        <label for="nameBasic" class="form-label">Name</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->name }}" />
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="nameBasic" class="form-label">Phone</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->phone }}" />
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="nameBasic" class="form-label">Address</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->address }}" />
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">City</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->city }}" />
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">State</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->state }}" />
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">Postcode</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->postcode }}" />
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="nameBasic" class="form-label">Description</label>
-                                        <textarea name="" id="" cols="30" rows="10" class="form-control">{{ $newFoodpartner->description }}</textarea>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="nameBasic" class="form-label">Food Certificate Number</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->food_cert_number }}" />
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="nameBasic" class="form-label">Food Certificate</label>
-                                        <div class="btn-group d-block" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn" style="background-color: var(--foodgrubber-tertiary-color); color: var(--foodgrubber-primary-color);">View</button>
-                                            <button type="button" class="btn" style="background-color: var(--foodgrubber-primary-color); color: var(--foodgrubber-tertiary-color);">Download <i
-                                                    class="tf-icons bx bx-download"></i></button>
+                            @if (isset($newFoodpartner))
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <label for="nameBasic" class="form-label">Name</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->name }}" />
                                         </div>
-                                        {{-- <input type="text" id="nameBasic" class="form-control" name=""
+                                        <div class="col-6 mb-3">
+                                            <label for="nameBasic" class="form-label">Phone</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->phone }}" />
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="nameBasic" class="form-label">Address</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->address }}" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">City</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->city }}" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">State</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->state }}" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">Postcode</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->postcode }}" />
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="nameBasic" class="form-label">Description</label>
+                                            <textarea name="" id="" cols="30" rows="10" class="form-control">{{ $newFoodpartner->description }}</textarea>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="nameBasic" class="form-label">Food Certificate Number</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->food_cert_number }}" />
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="nameBasic" class="form-label">Food Certificate</label>
+                                            <div class="btn-group d-block" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn"
+                                                    style="background-color: var(--foodgrubber-tertiary-color); color: var(--foodgrubber-primary-color);">View</button>
+                                                <button type="button" class="btn"
+                                                    style="background-color: var(--foodgrubber-primary-color); color: var(--foodgrubber-tertiary-color);">Download
+                                                    <i class="tf-icons bx bx-download"></i></button>
+                                            </div>
+                                            {{-- <input type="text" id="nameBasic" class="form-control" name=""
                                             value="{{ $newFoodpartner->food_cert }}" /> --}}
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">Account Number</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->account_number }}" />
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">Sort Code</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->sort_code }}" />
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <label for="nameBasic" class="form-label">Bank</label>
-                                        <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->bank }}" />
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="nameBasic" class="form-label">Logo</label>
-                                        <img src="{{ $newFoodpartner->logo ? asset('img/stores/' . $newFoodpartner->logo) : asset('img/no-image.png') }}"
-                                            alt="Avatar" class="rounded d-block" height="100" width="100" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">Account Number</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->account_number }}" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">Sort Code</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->sort_code }}" />
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="nameBasic" class="form-label">Bank</label>
+                                            <input type="text" id="nameBasic" class="form-control" name=""
+                                                value="{{ $newFoodpartner->bank }}" />
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="nameBasic" class="form-label">Logo</label>
+                                            <img src="{{ $newFoodpartner->logo ? asset('img/stores/' . $newFoodpartner->logo) : asset('img/no-image.png') }}"
+                                                alt="Avatar" class="rounded d-block" height="100" width="100" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <form action="{{ route('foodpartners.accept', $newFoodpartner->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT') <input type="hidden" name="foodpartner_id"
+                                            value="{{ $newFoodpartner->id }}">
+                                        <button type="submit" class="btn"
+                                            style="background-color: var(--foodgrubber-tertiary-color); color: var(--foodgrubber-primary-color);">Accept</button>
+                                    </form>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

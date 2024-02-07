@@ -11,6 +11,7 @@ class FoodPartner extends Model
 
     protected $connection = 'foodgrubber_foodpartners';
     protected $table = 'users_stores'; 
+    protected $fillable = ['status']; 
 
 
 }

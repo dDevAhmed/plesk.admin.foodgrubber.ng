@@ -14,7 +14,7 @@ class AdminsController extends Controller
         // $admins = Admin::all();
         $admins = Admin::where('level', 1)->get();
 
-        return view('people\admins', [
+        return view('people.admins', [
             'admins' => $admins,
         ]);
     }

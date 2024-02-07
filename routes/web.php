@@ -46,9 +46,12 @@ Route::controller(App\Http\Controllers\People\AdminsController::class)->group(fu
 
 Route::controller(App\Http\Controllers\People\FoodpartnersController::class)->group(function(){
     Route::get('/foodpartners', 'index')->name('foodpartners.index');
-    Route::get('/foodpartners/{partner}', 'partner')->name('foodpartners.partner');
+    Route::get('/foodpartners/{id}', 'foodpartner')->name('foodpartners.foodpartner');
 
-    Route::get('foodpartners/{newfoodpartner}/view')->name('foodpartners.new');
+    // Route::get('foodpartners/{foodpartner}/view')->name('foodpartners.foodpartner');
+    // Route::get('foodpartners/{newfoodpartner}/view')->name('foodpartners.new');
+    Route::put('foodpartners/{foodpartner}/accept', 'accept')->name('foodpartners.accept');
+
 
 })->middleware(['auth', 'verified']);
 
