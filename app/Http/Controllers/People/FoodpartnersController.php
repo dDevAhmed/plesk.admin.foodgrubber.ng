@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\People;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\People\FoodPartner;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,8 @@ class FoodpartnersController extends Controller
 
     public function foodpartner($id){
         $foodpartner = FoodPartner::find($id);
-        return view('people.foodpartner', compact('foodpartner'));
+        $foodpartnerProducts = Product::where('store_id', $foodpartner->id)->get();
+        return view('people.foodpartner', compact('foodpartner', 'foodpartnerProducts'));
     }
 
     // accept new application

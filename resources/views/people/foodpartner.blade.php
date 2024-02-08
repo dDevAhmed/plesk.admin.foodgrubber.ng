@@ -98,31 +98,35 @@
                     <!-- /Account -->
                 </div>
 
-                {{-- @if ($foodpartner->user_store->products > 0)
-                    
-                @endif --}}
-                <h5 class="card-header">Products</h5>
-                <div class="card">
+                @if (isset($foodpartnerProducts))
+                    <h5 class="card-header">Products</h5>
                     <div class="card-body">
-                        <form id="formPasswordSettings" method="POST" onsubmit="return false">
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="firstName" class="form-label">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password" />
+                        <div class="row">
+                            @foreach ($foodpartnerProducts as $foodpartnerProduct)
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                    <div class="card">
+                                        <img class="card-img-top"
+                                            {{-- src="{{ $foodpartnerProduct->image1 ? asset('img/products/' . $foodpartnerProduct->image1) : asset('img/no-image.png') }}" --}}
+                                            src="{{ asset('img/no-image.png') }}"
+                                            alt="Product Image" style="height: 200px; object-fit:cover;" />
+                                        <div class="card-body text-start">
+                                            <h6 class="card-subtitle text-muted mb-3">
+                                                ({{ $foodpartnerProduct->category }})
+                                            </h6>
+                                            <h5 class="card-title">{{ $foodpartnerProduct->name }}</h5>
+                                            {{-- <p class="card-text">
+                                            {{ $product->description ? Str::words($product->description, 10, '...') : 'No product description available' }}
+                                        </p> --}}
+                                            {{-- <h5 class="card-title">&#8358;{{ $product->price }}</h5> --}}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="lastName" class="form-label">Confirm Password</label>
-                                    <input class="form-control" type="password" name="confirmPassword"
-                                        id="confirmPassword" />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <button type="submit" class="btn btn-primary me-2">Update Password</button>
-                            </div>
-                        </form>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
+    </div>
     </div>
 @endsection

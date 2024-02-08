@@ -46,7 +46,7 @@ Route::controller(App\Http\Controllers\People\AdminsController::class)->group(fu
 
 Route::controller(App\Http\Controllers\People\FoodpartnersController::class)->group(function(){
     Route::get('/foodpartners', 'index')->name('foodpartners.index');
-    Route::get('/foodpartners/{id}', 'foodpartner')->name('foodpartners.foodpartner');
+    Route::get('/foodpartner/{id}', 'foodpartner')->name('foodpartners.foodpartner');
 
     // Route::get('foodpartners/{foodpartner}/view')->name('foodpartners.foodpartner');
     // Route::get('foodpartners/{newfoodpartner}/view')->name('foodpartners.new');

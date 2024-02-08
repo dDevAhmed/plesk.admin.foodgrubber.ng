@@ -2,8 +2,10 @@
 
 namespace App\Models\People;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
+use App\Models\People\FoodPartner;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FoodPartner extends Model
 {
@@ -13,5 +15,9 @@ class FoodPartner extends Model
     protected $table = 'users_stores'; 
     protected $fillable = ['status']; 
 
+    public function product()
+    {
+        return $this->hasMany(Product::class, 'store_id');
+    }
 
 }
