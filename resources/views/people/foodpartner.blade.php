@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="mb-3"></div>
-                        @if ($foodpartner->staus == 'p')
+                        @if ($foodpartner->status == 'p')
                             <form action="{{ route('foodpartners.accept', $foodpartner->id) }}" method="POST">
                                 @csrf
                                 @method('PUT') <input type="hidden" name="foodpartner_id"
@@ -98,31 +98,27 @@
                     <!-- /Account -->
                 </div>
 
-                @if (isset($foodpartnerProducts))
+                @if ($foodpartnerProducts)
                     <h5 class="card-header">Products</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            @foreach ($foodpartnerProducts as $foodpartnerProduct)
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-                                    <div class="card">
-                                        <img class="card-img-top"
-                                            {{-- src="{{ $foodpartnerProduct->image1 ? asset('img/products/' . $foodpartnerProduct->image1) : asset('img/no-image.png') }}" --}}
-                                            src="{{ asset('img/no-image.png') }}"
-                                            alt="Product Image" style="height: 200px; object-fit:cover;" />
-                                        <div class="card-body text-start">
-                                            <h6 class="card-subtitle text-muted mb-3">
-                                                ({{ $foodpartnerProduct->category }})
-                                            </h6>
-                                            <h5 class="card-title">{{ $foodpartnerProduct->name }}</h5>
-                                            {{-- <p class="card-text">
+                    <div class="row">
+                        @foreach ($foodpartnerProducts as $foodpartnerProduct)
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <div class="card">
+                                    <img class="card-img-top" {{-- src="{{ $foodpartnerProduct->image1 ? asset('img/products/' . $foodpartnerProduct->image1) : asset('img/no-image.png') }}" --}} src="{{ asset('img/no-image.png') }}"
+                                        alt="Product Image" style="height: 200px; object-fit:cover;" />
+                                    <div class="card-body text-start">
+                                        <h6 class="card-subtitle text-muted mb-3">
+                                            ({{ $foodpartnerProduct->category }})
+                                        </h6>
+                                        <h5 class="card-title">{{ $foodpartnerProduct->name }}</h5>
+                                        {{-- <p class="card-text">
                                             {{ $product->description ? Str::words($product->description, 10, '...') : 'No product description available' }}
                                         </p> --}}
-                                            {{-- <h5 class="card-title">&#8358;{{ $product->price }}</h5> --}}
-                                        </div>
+                                        {{-- <h5 class="card-title">&#8358;{{ $product->price }}</h5> --}}
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                 @endif
             </div>

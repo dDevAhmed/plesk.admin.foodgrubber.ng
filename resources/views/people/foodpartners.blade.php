@@ -112,7 +112,7 @@
                 </div>
 
                 <!-- View Foodpartner Modal -->
-                <div class="modal fade" id="viewFoodpartnerModal" tabindex="-1" aria-hidden="true">
+                {{-- <div class="modal fade" id="viewFoodpartnerModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -170,8 +170,6 @@
                                                 style="background-color: var(--foodgrubber-primary-color); color: var(--foodgrubber-tertiary-color);">Download
                                                 <i class="tf-icons bx bx-download"></i></button>
                                         </div>
-                                        {{-- <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $foodpartner->food_cert }}" /> --}}
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label for="nameBasic" class="form-label">Account Number</label>
@@ -201,11 +199,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- View Foodpartner Modal -->
 
                 <!-- View New Foodpartner Modal -->
-                <div class="modal fade" id="viewNewFoodpartnerModal" tabindex="-1" aria-hidden="true">
+                {{-- <div class="modal fade" id="viewNewFoodpartnerModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -264,8 +262,6 @@
                                                     style="background-color: var(--foodgrubber-primary-color); color: var(--foodgrubber-tertiary-color);">Download
                                                     <i class="tf-icons bx bx-download"></i></button>
                                             </div>
-                                            {{-- <input type="text" id="nameBasic" class="form-control" name=""
-                                            value="{{ $newFoodpartner->food_cert }}" /> --}}
                                         </div>
                                         <div class="col-4 mb-3">
                                             <label for="nameBasic" class="form-label">Account Number</label>
@@ -304,7 +300,7 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- View New Foodpartner Modal -->
             </div>
         </div>
